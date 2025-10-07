@@ -17,17 +17,16 @@ public class EchoServer {
             ServerSocket sock = new ServerSocket(portNum);
 
             while (true) {
-                Socket client = sock.accept();
+                Socket client = sock.accept(); // connect with client
                 InputStream input = client.getInputStream();
                 OutputStream output = client.getOutputStream();
-                // System.out.println("Got a Request!");
 
-                int fromClient; // = input.read();
-                while ((fromClient = input.read()) != -1) {
-                    output.write(fromClient); //.println(fromClient);
+                int fromClient;
+                while ((fromClient = input.read()) != -1) { // while there is something to read from client:
+                    output.write(fromClient); // read it and send it back to client
                 }
 
-                client.close();
+                client.close(); // close connection
             }
         } catch (IOException ioe){
             System.out.println("We caught and unexpected exception");
